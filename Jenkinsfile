@@ -27,7 +27,8 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE:latest .'
+                sh 'docker build -t $DOCKER_IMAGE:$BUILD_NUMBER .'
+                sh 'docker tag $DOCKER_IMAGE:$BUILD_NUMBER $DOCKER_IMAGE:latest'
             }
         }
 
@@ -42,21 +43,34 @@ pipeline {
                 ]) {
                     sh '''
                         echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                        docker push $DOCKER_IMAGE:$BUILD_NUMBER
                         docker push $DOCKER_IMAGE:latest
                         docker logout
                     '''
                 }
             }
         }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh '''
+                    kubectl set image deployment/devops-app \
+                    devops-app=$DOCKER_IMAGE:$BUILD_NUMBER
+
+                    kubectl rollout status deployment/devops-app
+                '''
+            }
+        }
     }
 
     post {
         success {
-            echo 'CI/CD Docker image build and push completed successfully!'
+            echo 'CI/CD Pipeline completed successfully!'
+            echo 'Application deployed successfully to Kubernetes!'
         }
 
         failure {
-            echo 'Pipeline failed!'
+            echo 'CI/CD Pipeline failed!'
         }
     }
 }
