@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_IMAGE = '7757061412/devops-cicd-project'
+    }
+
     stages {
 
         stage('Checkout') {
@@ -23,24 +27,36 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t devops-project .'
+                sh 'docker build -t $DOCKER_IMAGE:latest .'
             }
         }
 
-        stage('Docker Test') {
+        stage('Docker Login & Push') {
             steps {
-                sh 'docker images'
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-credentials',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                        docker push $DOCKER_IMAGE:latest
+                        docker logout
+                    '''
+                }
             }
         }
     }
 
     post {
         success {
-            echo 'CI Pipeline completed successfully!'
+            echo 'CI/CD Docker image build and push completed successfully!'
         }
 
         failure {
-            echo 'CI Pipeline failed!'
+            echo 'Pipeline failed!'
         }
     }
 }
