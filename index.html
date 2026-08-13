@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Automated CI/CD Pipeline Deployment Using DevOps Tools</title>
+    <title>Automated CI/CD Pipeline - Version 2</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -16,7 +17,7 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fb;
+            background: #eef2f7;
             color: #222;
             line-height: 1.6;
         }
@@ -24,12 +25,12 @@
         header {
             background: linear-gradient(135deg, #172554, #2563eb);
             color: white;
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
         header h1 {
-            font-size: 38px;
+            font-size: 40px;
             margin-bottom: 15px;
         }
 
@@ -37,52 +38,69 @@
             font-size: 20px;
         }
 
+        .version {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 20px;
+            border-radius: 25px;
+            background: #16a34a;
+            color: white;
+            font-weight: bold;
+        }
+
         .container {
             width: 90%;
             max-width: 1200px;
-            margin: 30px auto;
+            margin: 40px auto;
         }
 
         .card {
             background: white;
+            margin-bottom: 30px;
             padding: 30px;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
         .card h2 {
             color: #1d4ed8;
             margin-bottom: 20px;
-            border-bottom: 2px solid #e5e7eb;
-            padding-bottom: 10px;
+            font-size: 27px;
         }
 
         .academic {
-            text-align: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
-        .academic h3 {
-            margin: 12px 0;
-            font-size: 24px;
+        .academic-item {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
         }
 
-        .academic p {
-            font-size: 18px;
-            margin: 8px;
+        .academic-item strong {
+            color: #1e40af;
         }
 
         .tools {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 18px;
         }
 
         .tool {
-            padding: 20px;
-            border-radius: 10px;
+            padding: 22px;
             background: #eff6ff;
             border-left: 5px solid #2563eb;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .tool:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .tool h3 {
@@ -90,61 +108,91 @@
             margin-bottom: 8px;
         }
 
-        .flow {
+        .pipeline {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 10px;
         }
 
-        .flow-item {
+        .stage {
             background: #2563eb;
             color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
+            padding: 15px 18px;
+            border-radius: 10px;
             font-weight: bold;
+            text-align: center;
         }
 
         .arrow {
             font-size: 25px;
+            font-weight: bold;
             color: #2563eb;
+        }
+
+        .monitoring {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .monitor-card {
+            padding: 25px;
+            background: #f8fafc;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #dbeafe;
+        }
+
+        .monitor-card h3 {
+            color: #1d4ed8;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            margin-top: 10px;
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            background: #dcfce7;
+            color: #166534;
             font-weight: bold;
         }
 
-        ul {
-            margin-left: 25px;
+        .upgrade {
+            background: #ecfdf5;
+            border-left: 6px solid #16a34a;
         }
 
-        li {
-            margin: 8px 0;
-        }
-
-        .highlight {
-            background: #dbeafe;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 15px;
+        .upgrade h2 {
+            color: #15803d;
         }
 
         footer {
             background: #172554;
             color: white;
             text-align: center;
-            padding: 25px;
-            margin-top: 40px;
+            padding: 35px 20px;
+            margin-top: 50px;
         }
 
-        @media (max-width: 600px) {
+        @media(max-width: 700px) {
+
             header h1 {
                 font-size: 28px;
             }
 
-            header p {
-                font-size: 16px;
+            .academic {
+                grid-template-columns: 1fr;
             }
+
+            .arrow {
+                display: none;
+            }
+
         }
+
     </style>
 </head>
 
@@ -154,52 +202,79 @@
 
     <h1>Automated CI/CD Pipeline Deployment Using DevOps Tools</h1>
 
-    <p>Master of Computer Application - Research Project</p>
+    <p>
+        Research Project - Version 2
+    </p>
+
+    <div class="version">
+        Successfully Upgraded Through CI/CD Pipeline
+    </div>
 
 </header>
 
+
 <div class="container">
+
 
     <!-- Academic Details -->
 
-    <div class="card academic">
+    <div class="card">
 
         <h2>Academic Project Details</h2>
 
-        <h3>Welcome to DevOps Final Year Project</h3>
+        <div class="academic">
 
-        <p>
-            <strong>Research Project:</strong>
-            Automated CI/CD Pipeline Deployment Using DevOps Tools
-        </p>
+            <div class="academic-item">
+                <strong>Project Title</strong>
+                <p>Automated CI/CD Pipeline Deployment Using DevOps Tools</p>
+            </div>
 
-        <p>
-            <strong>Submitted to:</strong>
-            Jain Online
-        </p>
+            <div class="academic-item">
+                <strong>Project Type</strong>
+                <p>Research Project</p>
+            </div>
 
-        <p>
-            <strong>In partial fulfillment of the requirements for the award of</strong>
-        </p>
+            <div class="academic-item">
+                <strong>University</strong>
+                <p>Jain Online</p>
+            </div>
 
-        <p>
-            <strong>Master of Computer Application</strong>
-        </p>
+            <div class="academic-item">
+                <strong>Program</strong>
+                <p>Master of Computer Application</p>
+            </div>
 
-        <p>
-            <strong>Submitted By:</strong>
-            DNYANOBA GUNVANTRAO NILKANTE
-        </p>
+            <div class="academic-item">
+                <strong>Submitted By</strong>
+                <p>NILKANTE DNYANOBA GUNVANTRAO</p>
+            </div>
 
-        <p>
-            <strong>USN:</strong>
-            241VMTR00711
-        </p>
+            <div class="academic-item">
+                <strong>USN</strong>
+                <p>241VMTR00711</p>
+            </div>
 
-        <p>
-            <strong>Under the Guidance of:</strong>
-            Prof. Manthana K S
-        </p>
+            <div class="academic-item">
+
+                <strong>Project Guide</strong>
+
+                <p>
+                    Prof. Manthana K S
+                </p>
+
+            </div>
+
+            <div class="academic-item">
+
+                <strong>Project Version</strong>
+
+                <p>
+                    Version 2 - Production Deployment
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -211,20 +286,27 @@
         <h2>Project Objective</h2>
 
         <p>
-            The main objective of this project is to design and implement
-            an automated CI/CD pipeline that integrates source code management,
-            continuous integration, containerization, Kubernetes deployment,
-            monitoring and alert notification.
+            This project demonstrates the implementation of an automated
+            Continuous Integration and Continuous Deployment pipeline using
+            DevOps practices.
         </p>
 
-        <div class="highlight">
+        <br>
 
-            <strong>Project Goal:</strong>
+        <p>
+            The system automatically takes source code from GitHub,
+            builds and packages the application using Docker, publishes
+            the container image to Docker Hub and deploys the application
+            into a Kubernetes cluster.
+        </p>
 
-            Automate the complete software deployment lifecycle from
-            source-code commit to application deployment and monitoring.
+        <br>
 
-        </div>
+        <p>
+            Prometheus and Grafana are integrated for monitoring, while
+            Alertmanager provides automated Gmail notifications when
+            predefined monitoring conditions are satisfied.
+        </p>
 
     </div>
 
@@ -233,78 +315,73 @@
 
     <div class="card">
 
-        <h2>Tools and Technologies Used</h2>
+        <h2>Technology Stack</h2>
 
         <div class="tools">
 
             <div class="tool">
-                <h3>AWS EC2</h3>
-                <p>Provides cloud infrastructure for the project.</p>
+                <h3>AWS</h3>
+                <p>Cloud infrastructure hosting the project.</p>
             </div>
 
             <div class="tool">
                 <h3>Ubuntu</h3>
-                <p>Server operating system used to host the DevOps environment.</p>
+                <p>Linux operating system used on the AWS server.</p>
             </div>
 
             <div class="tool">
                 <h3>Git</h3>
-                <p>Version control system for managing source code.</p>
+                <p>Version control system.</p>
             </div>
 
             <div class="tool">
                 <h3>GitHub</h3>
-                <p>Remote source-code repository and webhook integration.</p>
+                <p>Source code repository and webhook integration.</p>
             </div>
 
             <div class="tool">
                 <h3>Jenkins</h3>
-                <p>Automation server used to implement CI/CD pipelines.</p>
+                <p>Automation server responsible for CI/CD.</p>
             </div>
 
             <div class="tool">
                 <h3>Docker</h3>
-                <p>Containerization platform used to package the application.</p>
+                <p>Containerization platform.</p>
             </div>
 
             <div class="tool">
                 <h3>Docker Hub</h3>
-                <p>Container image registry used to store Docker images.</p>
+                <p>Container image registry.</p>
             </div>
 
             <div class="tool">
                 <h3>Kubernetes</h3>
-                <p>Container orchestration platform used for deployment.</p>
+                <p>Container orchestration platform.</p>
             </div>
 
             <div class="tool">
                 <h3>K3s</h3>
-                <p>Lightweight Kubernetes distribution used in the project.</p>
+                <p>Lightweight Kubernetes distribution.</p>
             </div>
 
             <div class="tool">
-                <h3>Nginx</h3>
-                <p>Web server used to serve the HTML application.</p>
+                <h3>Helm</h3>
+                <p>Kubernetes package manager.</p>
             </div>
 
             <div class="tool">
                 <h3>Prometheus</h3>
-                <p>Monitoring system used to collect infrastructure metrics.</p>
+                <p>Metrics collection and alerting.</p>
             </div>
 
             <div class="tool">
                 <h3>Grafana</h3>
-                <p>Visualization platform used to create monitoring dashboards.</p>
+                <p>Monitoring dashboards and visualization.</p>
             </div>
 
             <div class="tool">
                 <h3>Alertmanager</h3>
-                <p>Alert management system used for notification handling.</p>
-            </div>
-
-            <div class="tool">
-                <h3>Gmail / SMTP</h3>
-                <p>Used to receive monitoring alert notifications.</p>
+                <p>Alert management and Gmail notification.</p>
             </div>
 
         </div>
@@ -316,39 +393,39 @@
 
     <div class="card">
 
-        <h2>CI/CD Pipeline Workflow</h2>
+        <h2>Automated CI/CD Pipeline</h2>
 
-        <div class="flow">
+        <div class="pipeline">
 
-            <div class="flow-item">Developer</div>
-
-            <div class="arrow">→</div>
-
-            <div class="flow-item">GitHub</div>
+            <div class="stage">Developer</div>
 
             <div class="arrow">→</div>
 
-            <div class="flow-item">Jenkins</div>
+            <div class="stage">Git</div>
 
             <div class="arrow">→</div>
 
-            <div class="flow-item">Build & Test</div>
+            <div class="stage">GitHub</div>
 
             <div class="arrow">→</div>
 
-            <div class="flow-item">Docker</div>
+            <div class="stage">Jenkins</div>
 
             <div class="arrow">→</div>
 
-            <div class="flow-item">Docker Hub</div>
+            <div class="stage">Docker</div>
 
             <div class="arrow">→</div>
 
-            <div class="flow-item">Kubernetes</div>
+            <div class="stage">Docker Hub</div>
 
             <div class="arrow">→</div>
 
-            <div class="flow-item">Application</div>
+            <div class="stage">Kubernetes</div>
+
+            <div class="arrow">→</div>
+
+            <div class="stage">Application</div>
 
         </div>
 
@@ -359,139 +436,167 @@
 
     <div class="card">
 
-        <h2>Monitoring and Alerting Architecture</h2>
+        <h2>Monitoring and Alerting</h2>
 
-        <div class="flow">
+        <div class="monitoring">
 
-            <div class="flow-item">Kubernetes</div>
+            <div class="monitor-card">
 
-            <div class="arrow">→</div>
+                <h3>Prometheus</h3>
 
-            <div class="flow-item">Prometheus</div>
+                <p>
+                    Collects Kubernetes and infrastructure metrics.
+                </p>
 
-            <div class="arrow">→</div>
+                <span class="status">
+                    Monitoring Active
+                </span>
 
-            <div class="flow-item">Grafana</div>
+            </div>
 
-            <div class="arrow">→</div>
+            <div class="monitor-card">
 
-            <div class="flow-item">Alertmanager</div>
+                <h3>Grafana</h3>
 
-            <div class="arrow">→</div>
+                <p>
+                    Displays CPU, memory, node and Kubernetes dashboards.
+                </p>
 
-            <div class="flow-item">Gmail</div>
+                <span class="status">
+                    Dashboard Active
+                </span>
+
+            </div>
+
+            <div class="monitor-card">
+
+                <h3>Alertmanager</h3>
+
+                <p>
+                    Processes Prometheus alerts and sends notifications.
+                </p>
+
+                <span class="status">
+                    Alerting Active
+                </span>
+
+            </div>
+
+            <div class="monitor-card">
+
+                <h3>Gmail</h3>
+
+                <p>
+                    Receives automated infrastructure alerts.
+                </p>
+
+                <span class="status">
+                    Notification Active
+                </span>
+
+            </div>
 
         </div>
 
-        <div class="highlight">
-
-            <strong>CPU Alert:</strong>
-
-            If CPU utilization remains above 80% for more than
-            2 minutes, the HighCPUUsage alert becomes active
-            and Alertmanager sends a Gmail notification.
-
-        </div>
-
     </div>
 
 
-    <!-- Kubernetes -->
+    <!-- Version Upgrade -->
 
-    <div class="card">
+    <div class="card upgrade">
 
-        <h2>Kubernetes Deployment</h2>
-
-        <ul>
-
-            <li>Application deployment: <strong>devops-app</strong></li>
-
-            <li>Application replicas: <strong>2</strong></li>
-
-            <li>Service type: <strong>NodePort</strong></li>
-
-            <li>Application port: <strong>80</strong></li>
-
-            <li>NodePort: <strong>30080</strong></li>
-
-            <li>Container platform: <strong>K3s Kubernetes</strong></li>
-
-        </ul>
-
-    </div>
-
-
-    <!-- Monitoring -->
-
-    <div class="card">
-
-        <h2>Monitoring Features</h2>
-
-        <ul>
-
-            <li>CPU monitoring</li>
-
-            <li>Memory monitoring</li>
-
-            <li>Kubernetes node monitoring</li>
-
-            <li>Pod monitoring</li>
-
-            <li>Deployment monitoring</li>
-
-            <li>Prometheus alert rules</li>
-
-            <li>Grafana dashboards</li>
-
-            <li>Alertmanager notifications</li>
-
-            <li>Gmail alert notification</li>
-
-        </ul>
-
-    </div>
-
-
-    <!-- Conclusion -->
-
-    <div class="card">
-
-        <h2>Project Conclusion</h2>
+        <h2>Version 1 → Version 2 Upgrade</h2>
 
         <p>
-            This project demonstrates an end-to-end DevOps implementation
-            where source code changes are automatically integrated,
-            containerized, pushed to a container registry and deployed
-            to Kubernetes. Prometheus and Grafana provide continuous
-            monitoring, while Alertmanager provides automated email
-            notifications for critical infrastructure conditions.
+            This page represents Version 2 of the application.
+            The upgrade was deployed using the automated CI/CD pipeline.
         </p>
 
-        <div class="highlight">
+        <br>
 
-            <strong>End-to-End Automation:</strong>
+        <p>
+            When the source code is modified and pushed to GitHub,
+            Jenkins automatically detects the change and starts a
+            new pipeline execution.
+        </p>
 
-            GitHub → Jenkins → Docker → Docker Hub → Kubernetes
-            → Prometheus → Grafana → Alertmanager → Gmail
+        <br>
 
-        </div>
+        <p>
+            Jenkins creates a new Docker image, pushes the image to
+            Docker Hub and updates the Kubernetes deployment.
+        </p>
+
+        <br>
+
+        <p>
+            Kubernetes performs a rolling update so that the new
+            application version becomes available without manually
+            redeploying the application.
+        </p>
 
     </div>
+
+
+    <!-- Deployment Status -->
+
+    <div class="card">
+
+        <h2>Deployment Status</h2>
+
+        <p>
+            <strong>Application:</strong> Automated CI/CD Web Application
+        </p>
+
+        <p>
+            <strong>Container:</strong> Docker
+        </p>
+
+        <p>
+            <strong>Orchestration:</strong> Kubernetes / K3s
+        </p>
+
+        <p>
+            <strong>Deployment Strategy:</strong> Rolling Update
+        </p>
+
+        <p>
+            <strong>Monitoring:</strong> Prometheus + Grafana
+        </p>
+
+        <p>
+            <strong>Alerting:</strong> Prometheus + Alertmanager + Gmail
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            <span class="status">Production Deployment Successful</span>
+        </p>
+
+    </div>
+
 
 </div>
 
 
 <footer>
 
+    <h2>Automated CI/CD Pipeline Deployment Using DevOps Tools</h2>
+
     <p>
-        Automated CI/CD Pipeline Deployment Using DevOps Tools
+        Research Project | Jain Online | Master of Computer Application
     </p>
 
     <p>
-        DNYANOBA GUNVANTRAO NILKANTE | USN: 241VMTR00711
+        NILKANTE DNYANOBA GUNVANTRAO | USN: 241VMTR00711
+    </p>
+
+    <p>
+        Guided by Prof. Manthana K S
     </p>
 
 </footer>
 
 </body>
+
 </html>
